@@ -114,10 +114,12 @@ function postSignup() {
     if (address == "") {
         alert("邮寄地址不能为空！")
         $("#add").focus();
+        return;
     }
     if (zipcode == "") {
         alert("邮政编码不能为空！")
         $("#zip").focus();
+        return;
     }
     if (zipcode.length != 6) {
         alert("邮政编码位数不正确！")
@@ -212,10 +214,12 @@ function postEdit() {
     if (address == "") {
         alert("邮寄地址不能为空！")
         $("#add").focus();
+        return;
     }
     if (zipcode == "") {
         alert("邮政编码不能为空！")
         $("#zip").focus();
+        return;
     }
     if (zipcode.length != 6) {
         alert("邮政编码位数不正确！")
