@@ -144,12 +144,12 @@ function postSignup() {
         $("#mail").focus();
         return;
     }
-    if (password == "") {
+    if (password == $.md5('')) {
         alert("密码不能为空！");
         $("#password").focus();
         return;
     }
-    if (passconf == "") {
+    if (passconf == $.md5('')) {
         alert("请确认您的密码！");
         $("#passconf").focus();
         return;
