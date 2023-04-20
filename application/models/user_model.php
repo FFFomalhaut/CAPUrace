@@ -205,8 +205,9 @@ class User_model extends CI_Model {
      * Generate a token for the user.
      */
     public function generate_token($mail) {
-        $user_info = $this->get_user_by_email($mail);
-        $token = md5($user_info['mail'] . $user_info['password'] . time());
+        // $user_info = $this->get_user_by_email($mail);
+        // $token = md5($user_info['mail'] . $user_info['password'] . time());
+        $token = md5($mail . time());
         return $token;
     }
 
