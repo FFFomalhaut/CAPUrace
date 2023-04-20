@@ -46,7 +46,7 @@ class User extends CI_Controller {
             header('Content-Type: application/json');
 
             if ($this->form_validation->run('login') == false) {
-                $err_code = '400';
+                $err_code = '402';
                 exit(err_msg($err_code));
             }
 
