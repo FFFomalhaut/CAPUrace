@@ -235,8 +235,8 @@ $ACCO_FEE = array(
  * Date and Time Settings
  */
 
-$SIGN_UP_DEADLINE = '2023-05-04';
-$REGISTRATION_START = '2023-05-06 09:00:00';
+$SIGN_UP_DEADLINE = '2023-05-07 12:00:00';
+$REGISTRATION_START = '2023-04-23 12:00:00';
 /*
  * Admin user list
  */
