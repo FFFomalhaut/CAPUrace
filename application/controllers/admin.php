@@ -120,6 +120,7 @@ class Admin extends CI_Controller {
     }
 
     public function info() {
+        $data['nunactive'] = $this->db->query('select count(*) as nunactive from users where activated=0 and deleted=0;')->result_array()[0]['nunactive'];
         $data['nschools'] = $this->db->query('select count(*) as nschools from users where activated=1;')->result_array()[0]['nschools'];
         $data['nstart'] = $this->db->query('select count(*) as nstart from users where activated=1 and start_register=1;')->result_array()[0]['nstart'];
         $data['nverified'] = $this->db->query('select count(*) as nverified from users where editable=0 and activated=1 and start_register=1;')->result_array()[0]['nverified'];

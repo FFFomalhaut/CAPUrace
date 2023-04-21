@@ -8,6 +8,10 @@
         </thead>
         <tbody>
         <tr>
+            <td>未激活高校总数</td>
+            <td><?=$nunactive?></td>
+        </tr>
+        <tr>
             <td>已激活高校总数</td>
             <td><?=$nschools?></td>
         </tr>
