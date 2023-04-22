@@ -149,6 +149,29 @@ class User_model extends CI_Model {
         $this->db->where('id', $id)->update('users', $start_register);
     }
 
+    /*
+     * A user's information rejected.
+     *
+     * ====argument====
+     * $id, the id of the user to be tagged.
+     *
+     */
+    public function reject($id) {
+        $reject = array('rejected' => TRUE);
+        $this->db->where('id', $id)->update('users', $reject);
+    }
+
+    /*
+     * Set rejected = 0, when a user edit its information.
+     *
+     * ====argument====
+     * $id, the id of the user to be tagged.
+     *
+     */
+    public function clear_reject($id) {
+        $reject = array('rejected' => FALSE);
+        $this->db->where('id', $id)->update('users', $reject);
+    }
 
     /*
      * Set the user to be paid.
@@ -197,7 +220,7 @@ class User_model extends CI_Model {
      *
      */
     public function get_unstarted() {
-        $query = $this->db->where('start_register', false)->where('activated', true)->order_by('province', 'asc')->get('users');
+        $query = $this->db->where('start_register', 1)->where('activated', 0)->where('deleted', 0)->order_by('province', 'asc')->get('users');
         return $query->result_array();
     }
 
@@ -319,6 +342,14 @@ class User_model extends CI_Model {
         $query = $this->db->where('paid', 1)->where('deleted', 0)->get('users');
         return $query->result_array();
     }
+
+    /*
+     * This function gets all activated users.
+     */
+    public function get_activated() {
+        $query = $this->db->where('actevated', 1)->where('deleted', 0)->get('users');
+        return $query->result_array();
+    }
     
     /*
      * This function gets all users confirmed but not verified.
@@ -331,7 +362,7 @@ class User_model extends CI_Model {
      * This function gets all unactivated users.
      */
     public function get_unactivated() {
-        return $this->db->where('activated', 0)->where('deleted', 0)->order_by('province', 'asc')->get('users')->result_array();
+        return $this->db->where('start_register', 0)->where('deleted', 0)->order_by('rejected', 'asc')->get('users')->result_array();
     }
 
     /*

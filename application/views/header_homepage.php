@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>北大赛报名网站</title>
+<title>北京大学自行车交流赛</title>
 <link rel="shortcut icon" href="<?=base_url()?>/assets/images/icon.png">
 <link href="<?=base_url()?>/assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="<?=base_url()?>/assets/css/style.css" rel="stylesheet">
@@ -75,9 +75,9 @@
               欢迎你，<?=$this->session->userdata('school')?><span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="<?=site_url('user/edit')?>">修改资料</a></li>
-              <?php if ($this->session->userdata('start_register')): ?>
-                <li><a href="<?=site_url('user/result')?>">查看报名结果</a></li>
-              <?php endif; ?>
+              <!-- <?php //if ($this->session->userdata('start_register')): ?>
+                <li><a href="<?//=site_url('user/result')?>">查看报名结果</a></li>
+              <?php //endif; ?> -->
               <li class="divider"></li>
               <li><a href="<?=site_url('user/logout')?>" id="logout-button">注销</a></li>
             </ul>

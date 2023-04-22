@@ -1,0 +1,53 @@
+我们的注册网站只统计学校及领队信息，不报名了。
+
+——路由设置
+禁用register/
+修改激活邮件内容。
+需要审核学校及领队信息。
+
+
+逻辑发生了非常重要的更改。考虑我们已有的activated(=x) 和start_register(=y) 两项指标，为方便，只改逻辑和前端显示，¡¡¡¡不改任何变量名，文件名和函数名!!!!
+
+
+——关于管理员页面显示的内容
+原来：注册(x=y=0)->激活(x=1 y=0)->开始报名（锁修改）(x=y=1)
+现在：注册(x=y=0)->审核通过（锁修改）(x=0 y=1)->激活(x=y=1)
+（“现在”的三个状态分别对应“尚未审核”，“尚未激活”，“激活成功”。）
+因此，start_register会变成审核通过的标志。
+顺序的修改会导致user_model中，
+get_unactivated函数修改。原为检测x?=0，现改为检测y?=0。
+get_unstartred函数的修改。原为检测x?=1 且 y?=0，现改为检测 x?=0 且 y?=1。
+get_registering函数不变。
+
+原"admin_confirm"页面实际会显示审核通过者	// 此页面原来之文件名应该按admin_activated&unstartedRegistering解
+原“admin_registering”页面实际上会显示激活成功者
+
+——关于管理员操作
+只有“尚未审核”页面有操作按钮。
+审核通过：即，(x=y=0) => (x=1 y=0)。调用user.start_register()函数。
+审核驳回：显然需要引入新数据库项rejected。则：（倒着梳理：）
+	x=1时，y必为1。代表激活成功。
+	x(activated) =0 时，y=1时，rejected必为0。代表审核通过。
+	x(activated) =0 时，y=0时，rejected=1时，代表审核驳回。
+	x(activated) =0 时，y=0时，rejected=0时，代表未开始审核。
+引入rejected项：
+	数据库增添一列，默认为0。
+	新设user.reject函数
+	在get_unactivated页面按rejected?=0给出状态。
+	get_unactivated函数，由按地区排序改为按通过与否排序。
+
+——关于用户操作
+取消登录时activated?=1的验证。
+取消start_register=1时的报名信息显示按钮。
+更改信息时不能不改就提交。
+——关于会话数据：需要依靠会话数据来显示首页上的提示。
+登录时加载会话数据增多，至同时有rejected，start_register和activated。
+登出时释放对应会话数据。
+信息修改时更新rejected会话数据。注意审核通过或驳回时不需要。
+
+增加首页提示。
+	
+
+
+激活成功时还要显示什么？
+邮件发送内容是什么？

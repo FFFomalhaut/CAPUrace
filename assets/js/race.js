@@ -177,7 +177,7 @@ function postSignup() {
     };
     $.post(controller, data, function(data) {
         if (data.code == "200") {
-            alert("注册成功！请登录您的邮箱查看激活邮件！");
+            alert("注册成功！请等待后台审核您的注册信息。");
             window.location.assign(directto);
         } else {
             alert(data.msg);

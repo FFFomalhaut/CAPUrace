@@ -8,8 +8,12 @@
     <h3><?php if (! $start_register): ?>修改<?php endif; ?>学校资料 </h3>
     <div>您的邮箱：<?=$mail?></div>
     <div style="color: red">
-    <?php if (! $start_register): ?>开始报名后将不可修改学校资料。
-    <?php else: ?>您已开始报名，不能修改资料！<?php endif; ?>
+    <?php if ($start_register): ?>您的信息已审核通过，不能修改资料！
+    <?php else: ?>
+        <?php if ($rejected): ?>您的信息未通过审核！请检查并修改后提交。<br>
+        <?php else: ?>正在审核您的信息！在此期间您仍可以修改资料。<br><?php endif; ?>
+        审核通过后将不可修改学校资料。
+    <?php endif; ?>
     </div>
     <hr/>
     <label class="col-sm-4">学校名称</label>

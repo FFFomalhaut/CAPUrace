@@ -51,11 +51,11 @@ class User extends CI_Controller {
             }
 
             $user_info = $this->user->get_user_by_email($login_info['mail']);
-
+            
             if ($user_info == NULL) {
                 $err_code = '204';
-            } elseif (!$user_info['activated']) {
-                $err_code = '201';
+            // } elseif (!$user_info['activated']) {
+            //     $err_code = '201';
             // } elseif (!$user_info['confirmed']) {
             //     $err_code = '202';
             } elseif ($login_info['password'] != $user_info['password']) {
@@ -66,61 +66,73 @@ class User extends CI_Controller {
                 $this->session->set_userdata('id', $user_info['id']);
                 $this->session->set_userdata('school', $user_info['school']);
                 $this->session->set_userdata('editable', $user_info['editable']);
+                $this->session->set_userdata('rejected', $user_info['rejected']);
                 $this->session->set_userdata('start_register', $user_info['start_register']);
+                $this->session->set_userdata('activated', $user_info['activated']);
             }
-
+            
             exit(err_msg($err_code));
         }
     }
-
+    
     /*
-     * Account logout.
-     */
+    * Account logout.
+    */
     public function logout() {
         $this->session->unset_userdata('logged_in');
         $this->session->unset_userdata('id');
         $this->session->unset_userdata('school');
         $this->session->unset_userdata('editable');
+        $this->session->unset_userdata('rejected');
         $this->session->unset_userdata('start_register');
+        $this->session->unset_userdata('activated');
         redirect(base_url(), 'refresh');
     }
-
-     public function signup() {
-
+    
+    public function signup() {
+        
         // //for link to CUCA in 2019  User: DetectiveHelen  Date: 19/5/8
         // header("Location: http://ucenter.hiwedo.cn/index.php?p=24&a=view&r=20");
         // exit();
         
-         date_default_timezone_set('PRC');
-
-         if ($this->input->server('REQUEST_METHOD') == 'GET') {
-             $this->load->view('header_homepage');
-             $this->load->view('add_hilight_nav2');
-             $this->load->view('signup_form');
+        date_default_timezone_set('PRC');
+        
+        if ($this->input->server('REQUEST_METHOD') == 'GET') {
+            $this->load->view('header_homepage');
+            $this->load->view('add_hilight_nav2');
+            $this->load->view('signup_form');
              $this->load->view('footer');
-         }
-
-         if ($this->input->server('REQUEST_METHOD') == 'POST') {
-             $data = $this->input->post();
-             header('Content-Type: application/json');
-
-             $signUpDeadline = strtotime($GLOBALS['SIGN_UP_DEADLINE']);
-             if (time() > $signUpDeadline) exit(err_msg('205'));
-
-             if ($this->form_validation->run('signup') == false) {
-                 $err_code = '400';
-             } else {
-                 $err_code = '200';
-                 unset($data['passconf']);
-                 $token = $this->user->generate_token($data['mail']);
-                 $data = array_merge($data, array('token' => $token));
-                 $this->user->sign_up($data);
-                 $this->email->send_account_confirm_mail($data['mail']);
-             }
-
-             exit(err_msg($err_code));
-         }
-     }
+            }
+            
+            if ($this->input->server('REQUEST_METHOD') == 'POST') {
+                $data = $this->input->post();
+                header('Content-Type: application/json');
+             
+                $signUpDeadline = strtotime($GLOBALS['SIGN_UP_DEADLINE']);
+                if (time() > $signUpDeadline) exit(err_msg('205'));
+                
+                if ($this->form_validation->run('signup') == false) {
+                    $err_code = '400';
+                } else {
+                    $err_code = '200';
+                    unset($data['passconf']);
+                    $token = $this->user->generate_token($data['mail']);
+                    $data = array_merge($data, array('token' => $token));
+                    $this->user->sign_up($data);
+                 //  $this->email->send_account_confirm_mail($data['mail']);
+                 $user_info = $this->user->get_user_by_email($data['mail']);
+                 $this->session->set_userdata('logged_in', true);
+                 $this->session->set_userdata('id', $user_info['id']);
+                 $this->session->set_userdata('school', $user_info['school']);
+                 $this->session->set_userdata('editable', $user_info['editable']);
+                 $this->session->set_userdata('rejected', $user_info['rejected']);
+                 $this->session->set_userdata('start_register', $user_info['start_register']);
+                 $this->session->set_userdata('activated', $user_info['activated']);
+                }
+                
+                exit(err_msg($err_code));
+            }
+        }
 
     /*
      * Show registration result for the user.
@@ -199,7 +211,8 @@ class User extends CI_Controller {
         $status = $this->user->activate($token);
         $data = array('info' => '');
         if ($status == 0)
-            $data['info'] = '激活成功！请等待报名开始，报名开始时间为' . $GLOBALS['REGISTRATION_START'] . '。<br>在您开始报名之前，您可以修改注册时填写的信息。';
+            // $data['info'] = '激活成功！请等待报名开始，报名开始时间为' . $GLOBALS['REGISTRATION_START'] . '。<br>在您开始报名之前，您可以修改注册时填写的信息。';
+            $data['info'] = '激活成功！';
         elseif ($status == 1)
             $data['info'] = '激活码无效或您已成功激活。';
         elseif ($status == 2)
@@ -232,9 +245,15 @@ class User extends CI_Controller {
                 $err_code = '400';
             } elseif ($user_info['start_register']) {
                 $err_code = '206';
+            } elseif (($data['school'] == $user_info['school']) && ($data['association_name'] == $user_info['association_name']) && ($data['province'] == $user_info['province']) &&
+                ($data['address'] == $user_info['address']) && ($data['zipcode'] == $user_info['zipcode']) && ($data['leader'] == $user_info['leader']) && ($data['tel'] == $user_info['tel'])) {
+                $err_code = '207';
             } else {
                 $err_code = '200';
                 $this->user->update($id, $data);
+                $this->user->clear_reject($id);
+                $this->session->set_userdata('rejected', 0);
+
             }
 
             exit(err_msg($err_code));

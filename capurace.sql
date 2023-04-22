@@ -89,6 +89,7 @@ CREATE TABLE `users` (
   `bill` int(11) NOT NULL DEFAULT '0',
   `paid` tinyint(1) NOT NULL DEFAULT '0',
   `start_register` tinyint(1) NOT NULL DEFAULT '0',
+  `rejected` tinyint(1) NOT NULL DEFAULT '0',
   `association_name` varchar(15) NOT NULL,
   `province` smallint(6) NOT NULL,
   `address` varchar(50) NOT NULL,

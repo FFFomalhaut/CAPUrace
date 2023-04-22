@@ -1,5 +1,5 @@
 <div class="indcontainer">
-    <h3>正在报名高校列表</h3>
+    <h3>审核通过且激活成功高校列表</h3>
     <table class="table">
         <thead>
         <tr>
