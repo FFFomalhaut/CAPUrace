@@ -318,41 +318,41 @@ class Admin extends CI_Controller {
             // }
 
         // Sheet 10: 团体赛表
-        $excel->createSheet(9);
-        $excel->setActiveSheetIndex(9)->setTitle('团体赛表');
-        $teams = $this->db->where('deleted', 0)->get('team')->result_array();
-        $excel->getActiveSheet()
-            ->setCellValue('A1', '序号')
-            ->setCellValue('B1', '姓名')
-            ->setCellValue('C1', '性别')
-            ->setCellValue('D1', '证件类型')
-            ->setCellValue('E1', '证件编号')
-            ->setCellValue('F1', '组别')
-            ->setCellValue('G1', '协会名称')
-            ->setCellValue('H1', '学校')
-            ->setCellValue('I1', '地区')
-            ->setCellValue('J1', '邮政编码')
-            ->setCellValue('K1', '手机号');
-        $i = 2;
-        foreach ($teams as $key => $item) {
-            $school = $this->user->get_user_by_id($item['school_id']);
-            if (! $school['paid']) {
-                continue;
-            }
-            $excel->getActiveSheet()->mergeCells('A' . $i . ':A' . ($i + 3));
-            $excel->getActiveSheet()->setCellValue('A' . $i, $key + 1);
-            $this->_fill_ind_in_team($excel, $item['first'], $i, $school);
-            $this->_fill_ind_in_team($excel, $item['second'], $i + 1, $school);
-            $this->_fill_ind_in_team($excel, $item['third'], $i + 2, $school);
-            $this->_fill_ind_in_team($excel, $item['fourth'], $i + 3, $school);
-            $i += 4;
-        }
+        // $excel->createSheet(9);
+        // $excel->setActiveSheetIndex(9)->setTitle('团体赛表');
+        // $teams = $this->db->where('deleted', 0)->get('team')->result_array();
+        // $excel->getActiveSheet()
+        //     ->setCellValue('A1', '序号')
+        //     ->setCellValue('B1', '姓名')
+        //     ->setCellValue('C1', '性别')
+        //     ->setCellValue('D1', '证件类型')
+        //     ->setCellValue('E1', '证件编号')
+        //     ->setCellValue('F1', '组别')
+        //     ->setCellValue('G1', '协会名称')
+        //     ->setCellValue('H1', '学校')
+        //     ->setCellValue('I1', '地区')
+        //     ->setCellValue('J1', '邮政编码')
+        //     ->setCellValue('K1', '手机号');
+        // $i = 2;
+        // foreach ($teams as $key => $item) {
+        //     $school = $this->user->get_user_by_id($item['school_id']);
+        //     if (! $school['paid']) {
+        //         continue;
+        //     }
+        //     $excel->getActiveSheet()->mergeCells('A' . $i . ':A' . ($i + 3));
+        //     $excel->getActiveSheet()->setCellValue('A' . $i, $key + 1);
+        //     $this->_fill_ind_in_team($excel, $item['first'], $i, $school);
+        //     $this->_fill_ind_in_team($excel, $item['second'], $i + 1, $school);
+        //     $this->_fill_ind_in_team($excel, $item['third'], $i + 2, $school);
+        //     $this->_fill_ind_in_team($excel, $item['fourth'], $i + 3, $school);
+        //     $i += 4;
+        // }
 
         // Sheet 11: 全体运动员信息表
-        $excel->createSheet(10);
-        $excel->setActiveSheetIndex(10)->setTitle('全体运动员信息');
-        $all_racer = $this->db->where('deleted', 0)->where('ifrace', 1)->get('people')->result_array();
-        $this->_fill_individual($excel, $all_racer);
+        // $excel->createSheet(10);
+        // $excel->setActiveSheetIndex(10)->setTitle('全体运动员信息');
+        // $all_racer = $this->db->where('deleted', 0)->where('ifrace', 1)->get('people')->result_array();
+        // $this->_fill_individual($excel, $all_racer);
 
         // ============================================================
         // Wrap up the file.
