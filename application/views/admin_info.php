@@ -63,14 +63,14 @@
             <td>团体赛队伍数量</td>
             <td><?=$nteams?></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td>第一天晚餐人数</td>
-            <td><?=$dinner?></td>
-        </tr>
-        <tr>
+            <td><?//=$dinner?></td>
+        </tr> -->
+        <!-- <tr>
             <td>第二天午餐人数</td>
-            <td><?=$lunch?></td>
-        </tr>
+            <td><?//=$lunch?></td>
+        </tr> -->
         </tbody>
     </table>
 </div>

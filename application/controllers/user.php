@@ -306,9 +306,9 @@ class User extends CI_Controller {
             ->setCellValue('K1', '男子公路精英')
             ->setCellValue('L1', '女子公路')
             ->setCellValue('M1', '团体赛')
-            ->setCellValue('N1', '5.5午餐+晚餐')
-            ->setCellValue('O1', '5.6午餐')
-            ->setCellValue('P1', '清真')
+            // ->setCellValue('N1', '5.5午餐+晚餐')
+            // ->setCellValue('O1', '5.6午餐')
+            // ->setCellValue('P1', '清真')
             ->setCellValue('Q1', '费用');
 
         foreach ($individual_info as $key => $item) {
@@ -327,9 +327,9 @@ class User extends CI_Controller {
                 ->setCellValue('K' . $i, $GLOBALS['JUDGE'][$item['rdb_elite']])
                 ->setCellValue('L' . $i, $GLOBALS['JUDGE'][$item['rdb_f']])
                 ->setCellValue('M' . $i, $GLOBALS['JUDGE'][$item['ifteam']])
-                ->setCellValue('N' . $i, $GLOBALS['JUDGE'][$item['dinner']])
-                ->setCellValue('O' . $i, $GLOBALS['JUDGE'][$item['lunch']])
-                ->setCellValue('P' . $i, $GLOBALS['JUDGE'][$item['islam']])
+                // ->setCellValue('N' . $i, $GLOBALS['JUDGE'][$item['dinner']])
+                // ->setCellValue('O' . $i, $GLOBALS['JUDGE'][$item['lunch']])
+                // ->setCellValue('P' . $i, $GLOBALS['JUDGE'][$item['islam']])
                 ->setCellValue('Q' . $i, $item['fee']);
         }
 

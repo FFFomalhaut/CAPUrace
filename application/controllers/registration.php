@@ -140,11 +140,11 @@ class Registration extends CI_Controller {
                     )));
                 }
                 // islam
-                if (!array_key_exists($item_post['islam'], $GLOBALS['JUDGE'])) {
-                    exit(err_custom_msg('1040', array(
-                        'order' => $item_post['order'] + 1,
-                    )));
-                }
+                // if (!array_key_exists($item_post['islam'], $GLOBALS['JUDGE'])) {
+                //     exit(err_custom_msg('1040', array(
+                //         'order' => $item_post['order'] + 1,
+                //     )));
+                // }
                 // id_number
                 if (!validate_id_number($item_post['id_number'], $item_post['id_type'], $item_post['gender'])) {
                     exit(err_custom_msg('1050', array(
@@ -159,21 +159,21 @@ class Registration extends CI_Controller {
                     $id_number_set[$item_post['id_number']] = $item_post['order'] + 1;
                 }
                 // dinner
-                if (!array_key_exists($item_post['dinner'], $GLOBALS['JUDGE'])) {
-                    exit(err_custom_msg('1070', array(
-                        'order' => $item_post['order'] + 1,
-                    )));
-                }
+                // if (!array_key_exists($item_post['dinner'], $GLOBALS['JUDGE'])) {
+                //     exit(err_custom_msg('1070', array(
+                //         'order' => $item_post['order'] + 1,
+                //     )));
+                // }
                 // lunch
-                if (!array_key_exists($item_post['lunch'], $GLOBALS['JUDGE'])) {
-                    exit(err_custom_msg('1080', array(
-                        'order' => $item_post['order'] + 1,
-                    )));
-                } else if ($item_post['ifrace'] == '1' and $item_post['lunch'] == '0') {
-                    exit(err_custom_msg('1081', array(
-                        'order' => $item_post['order'] + 1,
-                    )));
-                }
+                // if (!array_key_exists($item_post['lunch'], $GLOBALS['JUDGE'])) {
+                //     exit(err_custom_msg('1080', array(
+                //         'order' => $item_post['order'] + 1,
+                //     )));
+                // } else if ($item_post['ifrace'] == '1' and $item_post['lunch'] == '0') {
+                //     exit(err_custom_msg('1081', array(
+                //         'order' => $item_post['order'] + 1,
+                //     )));
+                // }
                 // race
                 if (!array_key_exists($item_post['race'], $GLOBALS['CAPURACE_M'])) {
                     exit(err_custom_msg('1090', array(

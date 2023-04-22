@@ -67,12 +67,12 @@
             <div class="col-sm-3">
                 <input class="form-control" name="tel" type="text">
             </div>
-            <label class="col-sm-1">清真</label>
+            <!-- <label class="col-sm-1">清真</label>
             <div class="col-sm-1">
                 <div class="col-sm-1">
                 <input type="checkbox" name="islam">
-            </div>
-            </div>
+                </div>
+            </div> -->
         </div>
         <div class="row">
             <label class="col-sm-1">证件类型</label>
@@ -86,14 +86,14 @@
             <div class="col-sm-3">
                 <input class="form-control" name="id_number" placeholder="证件编号" type="text">
             </div>
-            <label class="col-sm-2">5.5午餐+晚餐</label>
+            <!-- <label class="col-sm-2">5.5午餐+晚餐</label>
             <div class="col-sm-1">
                 <input type="checkbox" name="dinner">
             </div>
             <label class="col-sm-1">5.6午餐</label>
             <div class="col-sm-1">
                 <input type="checkbox" name="lunch">
-            </div>
+            </div> -->
         </div>
         <div class="show-if-attend">
             <div class="row">
@@ -153,9 +153,9 @@
             <th>证件类型</th>
             <th>证件编号</th>
             <th>参赛项目</th>
-            <th>5.5午餐+晚餐</th>
+            <!-- <th>5.5午餐+晚餐</th>
             <th>5.6午餐</th>
-            <th>清真</th>
+            <th>清真</th> -->
             <th>操作</th>
         </tr>
         </thead>
@@ -168,9 +168,9 @@
             <td class="id_type"></td>
             <td class="id_number"></td>
             <td class="race"></td>
-            <td class="dinner"></td>
+            <!-- <td class="dinner"></td>
             <td class="lunch"></td>
-            <td class="islam"></td>
+            <td class="islam"></td> -->
             <td>
                 <div class="btn-group-xs btn-group">
                     <button class="btn btn-primary btn-reg-ind-update">修改</button>
@@ -209,8 +209,8 @@
         data = <?=json_encode(load_db_individual())?>;
         localStorage.setItem('individual', JSON.stringify(data));
         $.each(data, function(order, item) {
-            item.dinner = (item.dinner == 1);
-            item.lunch = (item.lunch == 1);
+        //     item.dinner = (item.dinner == 1);
+        //     item.lunch = (item.lunch == 1);
             item.ifteam = (item.ifteam == 1);
             item.rdb = (item.rdb == 1);
         });

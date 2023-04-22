@@ -134,8 +134,8 @@ class Admin extends CI_Controller {
         $data['nmale_rdb_elite'] = $this->db->query('select count(*) as nmale_rdb_elite from people where deleted=0 and ifrace=1 and rdb_elite=1;')->result_array()[0]['nmale_rdb_elite'];
         $data['nfemale_rdb'] = $this->db->query('select count(*) as nfemale_rdb from people where deleted=0 and ifrace=1 and rdb_f=1;')->result_array()[0]['nfemale_rdb'];
         $data['nteams'] = $this->db->query('select count(*) as nteams from team where deleted=0;')->result_array()[0]['nteams'];
-        $data['dinner'] = $this->db->query('select count(*) as dinner from people where deleted=0 and dinner=1;')->result_array()[0]['dinner'];
-        $data['lunch'] = $this->db->query('select count(*) as lunch from people where deleted=0 and lunch=1;')->result_array()[0]['lunch'];
+        // $data['dinner'] = $this->db->query('select count(*) as dinner from people where deleted=0 and dinner=1;')->result_array()[0]['dinner'];
+        // $data['lunch'] = $this->db->query('select count(*) as lunch from people where deleted=0 and lunch=1;')->result_array()[0]['lunch'];
 
         $this->load->view('header_admin');
         $this->load->view('admin_info', $data);
@@ -257,54 +257,54 @@ class Admin extends CI_Controller {
         $this->_fill_individual($excel, $rdb_female);
 
         // Sheet 8: 5日两餐表
-        $excel->createSheet(7);
-        $excel->setActiveSheetIndex(7)->setTitle('5日午餐晚餐');
-        $dinner = $this->db->where('deleted', 0)->where('dinner', 1)->order_by('school_id', 'asc')->get('people')->result_array();
-        $excel->getActiveSheet()
-            ->setCellValue('A1', '序号')
-            ->setCellValue('B1', '姓名')
-            ->setCellValue('C1', '学校')
-            ->setCellValue('D1', '手机号')
-            ->setCellValue('E1', '清真');
-        $i = 2;
-        foreach ($dinner as $key => $item) {
-            $school = $this->user->get_user_by_id($item['school_id']);
-            if (! $school['paid']) {
-                continue;
-            }
-            $excel->getActiveSheet()
-                ->setCellValue('A' . $i, $i - 1)
-                ->setCellValue('B' . $i, $item['name'])
-                ->setCellValue('C' . $i, $school['school'])
-                ->setCellValue('D' . $i, $item['tel'])
-                ->setCellValue('E' . $i, $GLOBALS['JUDGE'][$item['islam']]);
-            $i++;
-        }
+        // $excel->createSheet(7);
+        // $excel->setActiveSheetIndex(7)->setTitle('5日午餐晚餐');
+        // $dinner = $this->db->where('deleted', 0)->where('dinner', 1)->order_by('school_id', 'asc')->get('people')->result_array();
+        // $excel->getActiveSheet()
+        //     ->setCellValue('A1', '序号')
+        //     ->setCellValue('B1', '姓名')
+        //     ->setCellValue('C1', '学校')
+        //     ->setCellValue('D1', '手机号')
+        //     ->setCellValue('E1', '清真');
+        // $i = 2;
+        // foreach ($dinner as $key => $item) {
+        //     $school = $this->user->get_user_by_id($item['school_id']);
+        //     if (! $school['paid']) {
+        //         continue;
+        //     }
+        //     $excel->getActiveSheet()
+        //         ->setCellValue('A' . $i, $i - 1)
+        //         ->setCellValue('B' . $i, $item['name'])
+        //         ->setCellValue('C' . $i, $school['school'])
+        //         ->setCellValue('D' . $i, $item['tel'])
+        //         ->setCellValue('E' . $i, $GLOBALS['JUDGE'][$item['islam']]);
+        //     $i++;
+        // }
 
         // Sheet 9: 6日午餐表
-        $excel->createSheet(8);
-        $excel->setActiveSheetIndex(8)->setTitle('6日午餐表');
-        $lunch = $this->db->where('deleted', 0)->where('lunch', 1)->order_by('school_id', 'asc')->get('people')->result_array();
-        $excel->getActiveSheet()
-            ->setCellValue('A1', '序号')
-            ->setCellValue('B1', '姓名')
-            ->setCellValue('C1', '学校')
-            ->setCellValue('D1', '手机号')
-            ->setCellValue('E1', '清真');
-        $i = 2;
-        foreach ($lunch as $key => $item) {
-            $school = $this->user->get_user_by_id($item['school_id']);
-            if (! $school['paid']) {
-                continue;
-            }
-            $excel->getActiveSheet()
-                ->setCellValue('A' . $i, $i - 1)
-                ->setCellValue('B' . $i, $item['name'])
-                ->setCellValue('C' . $i, $school['school'])
-                ->setCellValue('D' . $i, $item['tel'])
-                ->setCellValue('E' . $i, $GLOBALS['JUDGE'][$item['islam']]);
-            $i++;
-        }
+        // $excel->createSheet(8);
+        // $excel->setActiveSheetIndex(8)->setTitle('6日午餐表');
+        // $lunch = $this->db->where('deleted', 0)->where('lunch', 1)->order_by('school_id', 'asc')->get('people')->result_array();
+        // $excel->getActiveSheet()
+        //     ->setCellValue('A1', '序号')
+        //     ->setCellValue('B1', '姓名')
+        //     ->setCellValue('C1', '学校')
+        //     ->setCellValue('D1', '手机号')
+        //     ->setCellValue('E1', '清真');
+        // $i = 2;
+        // foreach ($lunch as $key => $item) {
+        //     $school = $this->user->get_user_by_id($item['school_id']);
+        //     if (! $school['paid']) {
+        //         continue;
+        //     }
+        //     $excel->getActiveSheet()
+        //         ->setCellValue('A' . $i, $i - 1)
+        //         ->setCellValue('B' . $i, $item['name'])
+        //         ->setCellValue('C' . $i, $school['school'])
+        //         ->setCellValue('D' . $i, $item['tel'])
+        //         ->setCellValue('E' . $i, $GLOBALS['JUDGE'][$item['islam']]);
+        //     $i++;
+        // }
 
         // Sheet 10: 团体赛表
         $excel->createSheet(9);

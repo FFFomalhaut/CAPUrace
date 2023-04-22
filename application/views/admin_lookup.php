@@ -38,9 +38,9 @@
             <th>证件类型</th>
             <th>证件编号</th>
             <th>参赛项目</th>
-            <th>5.5午餐+晚餐</th>
+            <!-- <th>5.5午餐+晚餐</th>
             <th>5.6午餐</th>
-            <th>清真</th>
+            <th>清真</th> -->
             <th>费用</th>
         </tr>
         </thead>
@@ -82,9 +82,9 @@
                     }
                     ?>
                 </td>
-                <td class="meal16"><?=$GLOBALS['JUDGE'][$item['dinner']]?></td>
-                <td class="meal17"><?=$GLOBALS['JUDGE'][$item['lunch']]?></td>
-                <td class="islam"><?=$GLOBALS['JUDGE'][$item['islam']]?></td>
+                <!-- <td class="meal16"><?//=$GLOBALS['JUDGE'][$item['dinner']]?></td>
+                <td class="meal17"><?//=$GLOBALS['JUDGE'][$item['lunch']]?></td>
+                <td class="islam"><?//=$GLOBALS['JUDGE'][$item['islam']]?></td> -->
                 <td class="fee"><?=$item['fee']?></td>
             </tr>
             <?php

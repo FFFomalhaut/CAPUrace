@@ -275,11 +275,11 @@ function cacheIndividual(order) {
     var gender = $("[name='gender']").val();
     var tel = $("[name='tel']").val();
     var ifrace = $("[name='ifrace']").val();
-    var islam = $("[name='islam']").prop('checked');
+    // var islam = $("[name='islam']").prop('checked');
     var id_type = $("[name='id_type']").val();
     var id_number = $("[name='id_number']").val();
-    var dinner = $("[name='dinner']").prop('checked');
-    var lunch = $("[name='lunch']").prop('checked');
+    // var dinner = $("[name='dinner']").prop('checked');
+    // var lunch = $("[name='lunch']").prop('checked');
     var race = $("[name='race']").prop('checked')*(gender == 1);
     var race_elite = $("[name='race_elite']").prop('checked')*(gender == 1);
     var race_f = $("[name='race']").prop('checked')*(gender == 2);
@@ -293,8 +293,8 @@ function cacheIndividual(order) {
         gender: gender,
         id_type: id_type,
         id_number: $.trim(id_number),
-        dinner: dinner,
-        lunch: lunch,
+        // dinner: dinner,
+        // lunch: lunch,
         tel: $.trim(tel),
         ifrace: ifrace,
         ifteam: ifteam,
@@ -304,7 +304,7 @@ function cacheIndividual(order) {
         race: race,
         race_elite: race_elite,
         race_f: race_f,
-        islam: islam
+        // islam: islam
     };
     localStorage.setItem('individual', JSON.stringify(data));
     reloadIndividual();
@@ -321,8 +321,8 @@ function fillIndividual(item) {
     elem.find(".gender").text(GENDER[item.gender]);
     elem.find(".id_type").text(ID_TYPE[item.id_type]);
     elem.find(".id_number").text(item.id_number);
-    elem.find(".dinner").text(JUDGE[+item.dinner]);
-    elem.find(".lunch").text(JUDGE[+item.lunch]);
+    // elem.find(".dinner").text(JUDGE[+item.dinner]);
+    // elem.find(".lunch").text(JUDGE[+item.lunch]);
     elem.find(".tel").text(item.tel);
     if (item.race != 0) {
         elem.find(".race").text('山地男子大众组');
@@ -348,7 +348,7 @@ function fillIndividual(item) {
     if (item.race == 0 && item.race_elite == 0 && item.race_f == 0 && item.rdb == 0 && item.rdb_elite == 0 && item.rdb_f == 0 && item.ifteam == 0) {
         elem.find(".race").append(' 不参加 ');
     }
-    elem.find(".islam").text(JUDGE[+item.islam]);
+    // elem.find(".islam").text(JUDGE[+item.islam]);
     $(".ind-list").append(elem);
 }
 
@@ -385,10 +385,10 @@ function fetchIndividual(order) {
         form.find("[name='roadbike']").prop('checked', item.rdb_f == 1);
     }
     form.find("[name='ifrace']").val(item.ifrace);
-    form.find("[name='islam']").prop('checked',item.islam == 1);
+    // form.find("[name='islam']").prop('checked',item.islam == 1);
     form.find("[name='ifteam']").prop('checked', item.ifteam == 1);
-    form.find("[name='dinner']").prop('checked', item.dinner == 1);
-    form.find("[name='lunch']").prop('checked', item.lunch == 1);
+    // form.find("[name='dinner']").prop('checked', item.dinner == 1);
+    // form.find("[name='lunch']").prop('checked', item.lunch == 1);
     restrictIndividual();
 }
 
@@ -396,7 +396,7 @@ function fetchIndividual(order) {
  * Add restrictions to the individual form.
  */
 function restrictIndividual() {
-    var lunch = $("[name='lunch']");
+    // var lunch = $("[name='lunch']");
     var team = $("[name='ifteam']");
     var race = $("[name='race']");
     var race_elite = $("[name='race_elite']");
@@ -413,13 +413,13 @@ function restrictIndividual() {
      * Otherwise the race options are disabled.
      */
     if (ifrace) {
-        lunch.prop('checked', true);
-        lunch.prop('disabled', true);
+        // lunch.prop('checked', true);
+        // lunch.prop('disabled', true);
         race.prop('disabled', false);
         team.prop('disabled', false);
         rdb.prop('disabled', false);
     } else {
-        lunch.prop('disabled', false);
+        // lunch.prop('disabled', false);
         race.prop('disabled', true);
         race.prop('checked', false);
         race_elite.prop('disabled', true);
@@ -485,11 +485,11 @@ function resetIndividual() {
     form.find("[name='race']").prop('checked', false);
     form.find("[name='race_elite']").prop('checked', false);
     form.find("[name='ifrace']").val("0");
-    form.find("[name='islam']").prop('checked', false);
+    // form.find("[name='islam']").prop('checked', false);
     form.find("[name='ifteam']").prop('checked', false);
-    form.find("[name='dinner']").prop('checked', false);
-    form.find("[name='lunch']").prop('checked', false);
-    form.find("[name='lunch']").prop('disabled', false);
+    // form.find("[name='dinner']").prop('checked', false);
+    // form.find("[name='lunch']").prop('checked', false);
+    // form.find("[name='lunch']").prop('disabled', false);
     form.find("[name='roadbike']").prop('checked', false);
     form.find("[name='roadbike']").prop('disabled', true);
     form.find("[name='roadbike_elite']").prop('checked', false);
@@ -509,9 +509,9 @@ function postIndividual() {
     $.each(item.data, function(order, ind) {
         ind.rdb = +ind.rdb;
         ind.ifteam = +ind.ifteam;
-        ind.dinner = +ind.dinner;
-        ind.lunch = +ind.lunch;
-        ind.islam = +ind.islam;
+        // ind.dinner = +ind.dinner;
+        // ind.lunch = +ind.lunch;
+        // ind.islam = +ind.islam;
     });
     $.post(controller, item, function(response) {
         if (response.code != "200") {

@@ -38,8 +38,8 @@ CREATE TABLE `people` (
   `id_type` varchar(8) NOT NULL,
   `id_number` varchar(18) NOT NULL,
   `school_id` smallint(5) UNSIGNED NOT NULL,
-  `dinner` tinyint(1) NOT NULL,
-  `lunch` tinyint(4) NOT NULL,
+  -- `dinner` tinyint(1) NOT NULL,
+  -- `lunch` tinyint(4) NOT NULL,
   `race` tinyint(4) NOT NULL DEFAULT '0',
   `race_elite` tinyint(1) NOT NULL DEFAULT '0',
   `race_f` tinyint(1) NOT NULL DEFAULT '0',
@@ -49,7 +49,7 @@ CREATE TABLE `people` (
   `ifrace` tinyint(1) NOT NULL,
   `ifteam` tinyint(1) NOT NULL,
   `tel` varchar(11) NOT NULL,
-  `islam` tinyint(1) NOT NULL,
+  -- `islam` tinyint(1) NOT NULL,
   `fee` int(11) NOT NULL DEFAULT '0',
   `deleted` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
