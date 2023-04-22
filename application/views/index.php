@@ -1,3 +1,4 @@
+<style> .alert{margin:0 0 5px}</style>
 <?php if (! $this->session->userdata('logged_in')): ?>
 <?php elseif ($this->session->userdata('activated')): ?>
 	<div class="alert alert-success">您已成功激活。请按照激活邮件中的信息联系对应地区负责来报名。</div>
@@ -9,6 +10,6 @@
 <?php else: ?>
 	<div class="alert alert-warning">您的信息正在被审核，请稍候。请关注本网站以及时获悉您的审核状态。</div>
 <?php endif; ?>
-<a href="<?=site_url('registration')?>">
-	<img src="<?=base_url()?>/assets/images/content.jpg" width="1100">
-</a>
+<!-- <a href="<?//=site_url('registration')?>"> -->
+	<img src="<?=base_url()?>/assets/images/essentials/content.png" width="1100">
+<!-- </a> -->
