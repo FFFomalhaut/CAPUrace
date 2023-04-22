@@ -347,7 +347,7 @@ class User_model extends CI_Model {
      * This function gets all activated users.
      */
     public function get_activated() {
-        $query = $this->db->where('actevated', 1)->where('deleted', 0)->get('users');
+        $query = $this->db->where('activated', 1)->where('deleted', 0)->get('users');
         return $query->result_array();
     }
     
