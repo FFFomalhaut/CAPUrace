@@ -41,7 +41,9 @@ class Admin extends CI_Controller {
                 echo 0;
             }
             if ($data['operation'] == 'pass') {
+                $this->load->library('email');
                 $this->user->start_register($data['id']);
+                $this->email->send_account_confirm_mail($data['mail']);
                 echo 0;
             }
             if ($data['operation'] == 'reject') {
@@ -198,7 +200,7 @@ class Admin extends CI_Controller {
         $excel->getDefaultStyle()
             ->getNumberFormat()
             ->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
-        $filename = '第十六届全国高校自行车交流赛总表' . '.xlsx';
+        $filename = '第十七届全国高校自行车交流赛总表' . '.xlsx';
 
         // Sheet 1: the information of all paid users.
         $excel->setActiveSheetIndex(0)->setTitle('高校信息');
