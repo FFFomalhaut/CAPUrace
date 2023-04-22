@@ -26,7 +26,7 @@
                 <td><?=$user['address']?></td>
                 <td><?=$user['zipcode']?></td>
                 <td><?=$user['leader']?></td>
-                <td><?=$user['mail']?></td>
+                <td class="school_mail"><?=$user['mail']?></td>
                 <td><?=$user['tel']?></td>
                 <td><?=$GLOBALS['REJECTED'][$user['rejected']]?></td>
                 <td>
@@ -67,8 +67,10 @@
     $(".btn-pass").click(function () {
       var id = $(this).closest(".school").find(".school_id").text();
       var school = $(this).closest(".school").find(".school_name").text();
+      var mail = $(this).closest(".school").find(".school_mail").text();
       var data = {
           id: parseInt(id),
+          mail: mail,
           operation: 'pass',
       };
       if (confirm('确认通过' + school + '的注册信息？此操作不可恢复！')) {
