@@ -61,12 +61,12 @@ class MY_Email extends CI_Email
      * Send account confirmation email.
      */
     public function send_account_confirm_mail($mail) {
-        $subject = '第十七届全国高校自行车交流赛帐户确认（含ID）';
+        $id = $this->ci->user->get_id($mail);
+        $subject = '第十七届全国高校自行车交流赛帐户确认（贵校的ID是' . $id . ')';
         $token = $this->ci->user->get_token($mail);
         $user_info = $this->ci->user->get_user_by_email($mail);
         $assoc_name = $user_info['association_name'];
         $link = site_url('user/activate') . '/' . $token;
-        $id = $this->ci->user->get_id($mail);
         $message = $assoc_name . '：<br>　　欢迎报名瑞豹杯·第十七届全国高校自行车交流赛！<br>' .
         '　　请点击以下链接激活帐户 ' . '<a href="' . $link . '">' . $link . '</a><br>' .
         '　　请扫描下方二维码加入我们的交流赛领队总群（<b>QQ群，群号：365904669</b>），群聊的验证问题请以“ID.学校名称”回答。如：0.北京大学<br>' .
