@@ -13,7 +13,7 @@
             <th>电子邮箱</th>
             <th>手机号</th>
             <th>审核状态</th>
-            <th>驳回原因</th>
+            <th>驳回原因（不驳回则不填）</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -30,11 +30,15 @@
                 <td class="school_mail"><?=$user['mail']?></td>
                 <td><?=$user['tel']?></td>
                 <td><?=$GLOBALS['REJECTED'][$user['rejected']]?></td>
-                <td class="reason"><input type="test" id="reason" placeholder="数据库只预留了30字空间！"></td>
+                <td class="reason">
+                <input type="test" id="reason" placeholder="数据库只预留了30字空间！" value="<?=$user['reason']?>">
+                </td>
                 <td>
-                  <button class="btn-xs btn-danger btn-reject">审核驳回</button>
-                  <button class="btn-xs btn-success btn-pass">审核通过</button>
-                  <!-- <button class="btn-xs btn-danger btn-delete">删除用户</button> -->
+                <?php if (! $user['rejected']): ?>
+                    <button class="btn-xs btn-danger btn-reject">审核驳回</button>
+                    <button class="btn-xs btn-success btn-pass">审核通过</button>
+                    <!-- <button class="btn-xs btn-danger btn-delete">删除用户</button> -->
+                <?php endif; ?>
                 </td>
             </tr>
         <?php endforeach; ?>
