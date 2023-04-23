@@ -13,6 +13,7 @@
             <th>电子邮箱</th>
             <th>手机号</th>
             <th>审核状态</th>
+            <th>驳回原因</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -29,6 +30,7 @@
                 <td class="school_mail"><?=$user['mail']?></td>
                 <td><?=$user['tel']?></td>
                 <td><?=$GLOBALS['REJECTED'][$user['rejected']]?></td>
+                <td class="reason"><input type="test" id="reason" placeholder="数据库只预留了30字空间！"></td>
                 <td>
                   <button class="btn-xs btn-danger btn-reject">审核驳回</button>
                   <button class="btn-xs btn-success btn-pass">审核通过</button>
@@ -55,8 +57,14 @@
     $(".btn-reject").click(function () {
       var id = $(this).closest(".school").find(".school_id").text();
       var school = $(this).closest(".school").find(".school_name").text();
+      var reason = $(this).closest(".school").find(".reason").children().val();
+      if (reason.length >= 30) {
+        alert('请精简原因至30字以内。');
+        return;
+      }
       var data = {
           id: parseInt(id),
+          reason: reason,
           operation: 'reject',
       };
       if (confirm('确认驳回' + school + '的注册信息？')) {

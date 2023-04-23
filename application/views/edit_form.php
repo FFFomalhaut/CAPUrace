@@ -11,6 +11,7 @@
     <?php if ($start_register): ?>您的信息已审核通过，不能修改资料！
     <?php else: ?>
         <?php if ($rejected): ?>您的信息未通过审核！请检查并修改后提交。<br>
+            审核意见：<b><?=$reason?></b><br>
         <?php else: ?>正在审核您的信息！在此期间您仍可以修改资料。<br><?php endif; ?>
         审核通过后将不可修改学校资料。
     <?php endif; ?>

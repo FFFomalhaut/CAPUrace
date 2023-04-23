@@ -48,6 +48,8 @@ class Admin extends CI_Controller {
             }
             if ($data['operation'] == 'reject') {
                 $this->user->reject($data['id']);
+                $this->user->set_reason($data['id'], $data['reason']);
+                // Note: reason will NOT be cleared when edit info. It won't be wrong.
                 echo 0;
             }
         }

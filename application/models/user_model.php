@@ -160,6 +160,18 @@ class User_model extends CI_Model {
         $reject = array('rejected' => TRUE);
         $this->db->where('id', $id)->update('users', $reject);
     }
+    
+    /*
+     * set the reason a user's is rejected.
+     *
+     * ====argument====
+     * $id, the id of the user to be tagged.
+     * $reason, the reason why it is rejected.
+     */
+    public function set_reason($id, $reason) {
+        $seter = array('reason' => $reason);
+        $this->db->where('id', $id)->update('users', $seter);
+    }
 
     /*
      * Set rejected = 0, when a user edit its information.

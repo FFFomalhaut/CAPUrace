@@ -90,6 +90,7 @@ CREATE TABLE `users` (
   `paid` tinyint(1) NOT NULL DEFAULT '0',
   `start_register` tinyint(1) NOT NULL DEFAULT '0',
   `rejected` tinyint(1) NOT NULL DEFAULT '0',
+  `reason` varchar(90) NOT NULL DEFAULT '-',
   `association_name` varchar(15) NOT NULL,
   `province` smallint(6) NOT NULL,
   `address` varchar(50) NOT NULL,

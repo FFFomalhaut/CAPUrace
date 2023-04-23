@@ -10,7 +10,7 @@
 		若您收不到邮件，请查看您邮箱的垃圾箱等文件夹。
 	</div>
 <?php elseif ($this->session->userdata('rejected')):?>
-	<div class="alert alert-danger">非常抱歉，您的信息未通过审核！请点击网页右上角“欢迎”处的下拉菜单，点击其中的“修改资料”。</div>
+	<div class="alert alert-danger">非常抱歉，您的信息未通过审核！请点击网页右上角“欢迎”处的下拉菜单，点击其中的“修改资料”，其中会显示未通过原因。</div>
 <?php else: ?>
 	<div class="alert alert-warning">
 		您的信息正在被审核，请稍候。请关注本网站以及时获悉您的审核状态。同时，审核通过后，我们会向您的邮箱发送验证（激活）信息。
