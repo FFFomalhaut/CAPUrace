@@ -212,11 +212,11 @@ class User extends CI_Controller {
         $data = array('info' => '');
         if ($status == 0)
             // $data['info'] = '激活成功！请等待报名开始，报名开始时间为' . $GLOBALS['REGISTRATION_START'] . '。<br>在您开始报名之前，您可以修改注册时填写的信息。';
-            $data['info'] = '激活成功！';
+            $data['info'] = '邮箱验证成功！';
         elseif ($status == 1)
-            $data['info'] = '激活码无效或您已成功激活。';
+            $data['info'] = '验证码无效或您已成功验证。';
         elseif ($status == 2)
-            $data['info'] = '激活码不存在。';
+            $data['info'] = '验证码不存在。';
         $this->load->view('activate_info', $data);
         $this->load->view('activate_footer');
     }

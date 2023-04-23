@@ -61,10 +61,16 @@ class MY_Email extends CI_Email
     public function send_account_confirm_mail($mail) {
         $subject = '第十七届全国高校自行车交流赛帐户确认（含ID）';
         $token = $this->ci->user->get_token($mail);
+        $user_info = $this->ci->user->get_user_by_email($mail);
+        $assoc_name = $user_info['association_name'];
         $link = site_url('user/activate') . '/' . $token;
         $id = $this->ci->user->get_id($mail);
-        $id_message='<br><br>贵高校本次比赛的ID是<b>' . $id . '</b>，请领队同学务必牢记，并在比赛签到时出示。<br><br>祝好！<br><br>北京大学自行车协会';
-        $message = '请点击以下链接激活帐户 ' . '<a href="' . $link . '">' . $link . '</a>' . $id_message;
+        $message = $assoc_name . '：<br>　　欢迎报名瑞豹杯·第十七届全国高校自行车交流赛！<br>' .
+        '　　请点击以下链接激活帐户 ' . '<a href="' . $link . '">' . $link . '</a><br>' .
+        '　　请扫描下方二维码加入我们的交流赛领队总群（<b>QQ群</b>），群聊的验证问题请以“ID.学校名称”回答。如：0.北京大学<br>' .
+        '　　贵高校本次比赛的ID是<b>' . $id . '</b>，请领队同学务必牢记，并在比赛签到时出示。<br>' .
+        '　　祝好！<br>北京大学自行车协会<br>' .
+        '<img src="' . base_url() . 'assets/images/essentials/qq.jpg">';
         $this->send_mail($mail, $subject, $message);
     }
 
