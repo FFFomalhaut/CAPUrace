@@ -28,6 +28,7 @@ class MY_Email extends CI_Email
         $to_mail,
         $subject,
         $message,
+        $attach = '',
         $customOptions = array()
     ) {
         date_default_timezone_set('PRC');
@@ -52,6 +53,7 @@ class MY_Email extends CI_Email
         $this->to($to_mail);
         $this->subject($subject);
         $this->message($message);
+        $this->attach($attach);
         $this->send();
     }
 
@@ -70,8 +72,8 @@ class MY_Email extends CI_Email
         '　　请扫描下方二维码加入我们的交流赛领队总群（<b>QQ群</b>），群聊的验证问题请以“ID.学校名称”回答。如：0.北京大学<br>' .
         '　　贵高校本次比赛的ID是<b>' . $id . '</b>，请领队同学务必牢记，并在比赛签到时出示。<br>' .
         '　　祝好！<br>北京大学自行车协会<br>' .
-        '<img src="' . base_url() . 'assets/images/essentials/qq.jpg">';
-        $this->send_mail($mail, $subject, $message);
+        $attach = '/assets/images/essentials/qq.jpg';
+        $this->send_mail($mail, $subject, $message, $attach);
     }
 
     /*
