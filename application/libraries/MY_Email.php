@@ -28,7 +28,7 @@ class MY_Email extends CI_Email
         $to_mail,
         $subject,
         $message,
-        $attach = '',
+        // $attach = '',
         $customOptions = array()
     ) {
         date_default_timezone_set('PRC');
@@ -53,7 +53,7 @@ class MY_Email extends CI_Email
         $this->to($to_mail);
         $this->subject($subject);
         $this->message($message);
-        $this->attach($attach);
+        // $this->attach($attach);
         $this->send();
     }
 
@@ -69,11 +69,12 @@ class MY_Email extends CI_Email
         $id = $this->ci->user->get_id($mail);
         $message = $assoc_name . '：<br>　　欢迎报名瑞豹杯·第十七届全国高校自行车交流赛！<br>' .
         '　　请点击以下链接激活帐户 ' . '<a href="' . $link . '">' . $link . '</a><br>' .
-        '　　请扫描下方二维码加入我们的交流赛领队总群（<b>QQ群</b>），群聊的验证问题请以“ID.学校名称”回答。如：0.北京大学<br>' .
-        '　　贵高校本次比赛的ID是<b>' . $id . '</b>，请领队同学务必牢记，并在比赛签到时出示。<br>' .
-        '　　祝好！<br>北京大学自行车协会<br>' .
-        $attach = '/assets/images/essentials/qq.jpg';
-        $this->send_mail($mail, $subject, $message, $attach);
+        '　　请扫描下方二维码加入我们的交流赛领队总群（<b>QQ群，群号：365904669</b>），群聊的验证问题请以“ID.学校名称”回答。如：0.北京大学<br>' .
+        '　　贵高校本次比赛的ID是<b>' . $id . '</b>，请领队同学务必牢记，并在比赛签到时出示。<br>' .    
+        '　　原定于在激活邮件中附上的邀请函暂不提供，将后期于领队总群中提供，造成不便敬请谅解。<br>' .
+        '　　祝好！<br>北京大学自行车协会<br>';
+        // $attach = '/assets/images/essentials/qq.jpg';
+        $this->send_mail($mail, $subject, $message);
     }
 
     /*
